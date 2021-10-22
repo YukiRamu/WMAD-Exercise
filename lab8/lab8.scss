@@ -1,0 +1,28 @@
+body {
+ width: 80%;
+ position: absolute;
+ top: 50%;
+ left: 50%;
+ transform: translate(-50%,-50%);
+}
+.counter {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: baseline;
+  width: fit-content;
+  background-color: lightpink;
+  padding: 1rem;
+  .incrementBtn,
+  .decrementBtn {
+    margin: 0.5rem;
+    background-color: lightskyblue;
+    border: none;
+    &:hover {
+      color: white;
+      font-size: 1.5rem;
+      font-weight: bold;
+      border: 0.1rem solid blue;
+    }
+  }
+}

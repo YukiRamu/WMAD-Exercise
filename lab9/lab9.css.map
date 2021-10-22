@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,IAAI,CAAC;EACH,OAAO,EAAE,IAAI;CACd;;AACD,AAAA,EAAE,CAAC;EACD,UAAU,EAAE,MAAM;CACnB;;AACD,AAAA,WAAW,CAAC;EACV,OAAO,EAAE,IAAI;EACb,eAAe,EAAE,MAAM;EACvB,WAAW,EAAE,MAAM;EACnB,cAAc,EAAE,GAAG;EACnB,aAAa,EAAE,IAAI;CACpB;;AACD,AAAA,UAAU,CAAC;EACT,aAAa,EAAE,YAAY;CAC5B",
+    "sources": [
+        "lab9.scss"
+    ],
+    "names": [],
+    "file": "lab9.css"
+}

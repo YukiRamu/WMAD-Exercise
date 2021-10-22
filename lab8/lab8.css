@@ -1,0 +1,45 @@
+body {
+  width: 80%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+}
+
+.counter {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: baseline;
+      -ms-flex-align: baseline;
+          align-items: baseline;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  background-color: lightpink;
+  padding: 1rem;
+}
+
+.counter .incrementBtn,
+.counter .decrementBtn {
+  margin: 0.5rem;
+  background-color: lightskyblue;
+  border: none;
+}
+
+.counter .incrementBtn:hover,
+.counter .decrementBtn:hover {
+  color: white;
+  font-size: 1.5rem;
+  font-weight: bold;
+  border: 0.1rem solid blue;
+}
+/*# sourceMappingURL=lab8.css.map */

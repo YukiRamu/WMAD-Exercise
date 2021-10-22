@@ -1,0 +1,16 @@
+body {
+  padding: 1rem;
+}
+h1 {
+  text-align: center;
+}
+.searchForm {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  margin-bottom: 2rem;
+}
+.submitBtn {
+  margin-bottom: 0 !important;
+}
