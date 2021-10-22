@@ -26,20 +26,28 @@ const getIssueData = async () => {
 
 const getLabelData = async () => {
   try {
-    const res = await axios.get(`https://api.github.com/repos/${apiParam.owner}/${apiParam.repo}/labels`);
+    const res = await axios.get(`https://api.github.com/repos/${apiParam.owner}/${apiParam.repo}/labels?q=per_page=100`);
+
+    //url to search repo ID for facebook/react --> 10270250
+    //https://api.github.com/search/repositories?q=${apiParam.repo}&per_page=100&page=1
+
+  
+    //https://api.github.com/repos/${apiParam.owner}/${apiParam.repo}/labels?q=per_page=100&page=1 \\30 results
+
+    //https://api.github.com/search/labels?q=repository_id=10270250&per_page=100 //need to set label name
+
     if (!res === 200) {
       throw res.statusText;
     } else {
       const labelData = await res.data;
       labelDataArray = labelData; //for color change
+      console.log(labelData);
       return labelData;
     }
   } catch (error) {
     console.error(`${error}: Unable to fetch label data`);
   }
 };
-
-//[0].labels[0].color
 
 /* Display Result */
 const showData = (issueData, labelObjArray) => {
@@ -52,7 +60,7 @@ const showData = (issueData, labelObjArray) => {
         </div>
         <div class="cardBottom">
           ${elem.labels.map(e => (
-         `<p style="background-color: ${applyLabelColor(labelObjArray, e.name)}">${e.name}</p>`
+      `<p style="background-color: ${applyLabelColor(labelObjArray, e.name)}">${e.name}</p>`
     )).join("")}
         </div>
       </div>`
