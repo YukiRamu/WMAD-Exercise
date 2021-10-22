@@ -70,4 +70,11 @@ window.addEventListener("DOMContentLoaded", async () => {
 searchBtn.addEventListener("click", (e) => {
   e.preventDefault();
   searchIssue(e.target.form[0].value);
+  e.target.form[0].value = "";
+});
+
+clearSearch.addEventListener("click", async (e) => {
+  e.preventDefault();
+  const issueList = await getIssueData();
+  showData(issueList);
 });

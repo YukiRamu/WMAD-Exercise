@@ -27,6 +27,14 @@ nav .searchForm {
 
 nav .searchForm .searchInput {
   width: 70%;
+  border: 0.1rem solid gray;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
+          box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
+}
+
+nav .searchForm .searchInput:focus {
+  outline: none;
+  border: 0.1rem solid mediumvioletred;
 }
 
 nav .searchForm .searchBtn {
@@ -36,9 +44,35 @@ nav .searchForm .searchBtn {
   background: linear-gradient(-45deg, #ff7d31d3, #e62d03e8);
 }
 
-nav .searchForm .searchBtn:hover {
+nav .searchForm .searchBtn:focus {
+  outline: none;
   font-weight: bold;
+  font-size: larger;
+  border: mediumvioletred solid 0.1rem;
   background: linear-gradient(45deg, #fcd34d, #ef4444, #ec4899);
+  -webkit-box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
+          box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
+}
+
+nav .searchForm .searchBtn:hover {
+  border: mediumvioletred solid 0.1rem;
+  font-weight: bold;
+  font-size: larger;
+  background: linear-gradient(45deg, #fcd34d, #ef4444, #ec4899);
+  -webkit-box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
+          box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
+}
+
+nav .clearSearch {
+  margin: 2rem 0 0 0;
+  border: none;
+  background: none;
+}
+
+nav .clearSearch:hover {
+  color: mediumvioletred;
+  border-bottom: 0.2rem solid orange;
+  font-weight: bold;
 }
 
 /* Issue Cards */
@@ -72,7 +106,7 @@ nav .searchForm .searchBtn:hover {
 }
 
 .issueCardSection .cardItem:hover {
-  border: 0.2rem solid red;
+  border: 0.2rem solid mediumvioletred;
   -webkit-box-shadow: rgba(189, 123, 123, 0.338) 0px 20px 25px -5px, rgba(228, 26, 26, 0.579) 0px 10px 10px -5px;
           box-shadow: rgba(189, 123, 123, 0.338) 0px 20px 25px -5px, rgba(228, 26, 26, 0.579) 0px 10px 10px -5px;
 }
