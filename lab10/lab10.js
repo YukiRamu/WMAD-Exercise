@@ -1,6 +1,7 @@
 /* Fetch data */
 
 let issueDataArray = []; //use this as a temp storage for search feature
+let labelDataArray = []; //store label data for color change
 
 const apiParam = {
   owner: "Facebook",
@@ -15,7 +16,7 @@ const getIssueData = async () => {
     } else {
       const issueData = await response.data;
       console.log(issueData); //array
-      issueDataArray = issueData;
+      issueDataArray = issueData; //for search function
       return issueData;
     }
   } catch (error) {
@@ -23,8 +24,25 @@ const getIssueData = async () => {
   }
 };
 
+const getLabelData = async () => {
+  try {
+    const res = await axios.get(`https://api.github.com/repos/${apiParam.owner}/${apiParam.repo}/labels`);
+    if (!res === 200) {
+      throw res.statusText;
+    } else {
+      const labelData = await res.data;
+      labelDataArray = labelData; //for color change
+      return labelData;
+    }
+  } catch (error) {
+    console.error(`${error}: Unable to fetch label data`);
+  }
+};
+
+//[0].labels[0].color
+
 /* Display Result */
-const showData = (issueData) => {
+const showData = (issueData, labelObjArray) => {
   let html = `
     ${issueData.map(elem => (
     `<div class="cardItem" onclick="showIssueDetail('${elem.html_url}')">
@@ -34,7 +52,7 @@ const showData = (issueData) => {
         </div>
         <div class="cardBottom">
           ${elem.labels.map(e => (
-      `<p>${e.name}</p>`
+         `<p style="background-color: ${applyLabelColor(labelObjArray, e.name)}">${e.name}</p>`
     )).join("")}
         </div>
       </div>`
@@ -58,13 +76,33 @@ const showUser = (url) => {
 const searchIssue = (keyword) => {
   const result = issueDataArray.filter((elem) => elem.title.toLowerCase().includes(keyword.toLowerCase()));
   //display result
-  showData(result);
+  showData(result, labelObjArray);
 };
 
-/* Function Execution */
+/* Create label color Object */
+const createLabelObj = (labelArray) => {
+  const obj = labelArray.map(elem => ({
+    [elem.name]: elem.color
+  }));
+  return obj;
+};
+
+/* Apply label color as a html attribute */
+const applyLabelColor = (labelObjArray, labelName) => {
+  //check if labelObjArray has the key same as labelName
+  for (let i = 0; i < labelObjArray.length; i++) {
+    if (labelName in labelObjArray[i]) {
+      return `#${labelObjArray[i][labelName]}`;
+    }
+  }
+};
+
+/* ========== Function Execution =========== */
 window.addEventListener("DOMContentLoaded", async () => {
+  const labels = await getLabelData();
+  const labelObjArray = await createLabelObj(labels); //array of objects
   const data = await getIssueData();
-  showData(data);
+  showData(data, labelObjArray);
 });
 
 searchBtn.addEventListener("click", (e) => {
@@ -76,5 +114,5 @@ searchBtn.addEventListener("click", (e) => {
 clearSearch.addEventListener("click", async (e) => {
   e.preventDefault();
   const issueList = await getIssueData();
-  showData(issueList);
+  showData(issueList, labelObjArray);
 });
