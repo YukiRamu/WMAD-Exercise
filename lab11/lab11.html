@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>lab11</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- css link -->
+  <link rel="stylesheet" href="lab11.css" />
+  <!-- js link -->
+  <script type="text/javascript" src="lab11.js" defer></script>
+  <!-- Google fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap" rel="stylesheet">
+  <!-- Fontawesome -->
+  <script src="https://kit.fontawesome.com/a62f436beb.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+  <h1>User List App</h1>
+  <!-- User cards -->
+  <section class="userCardSection" id="userCardSection">
+    <!-- insert user list here -->
+  </section>
+
+  <!-- Pop Up -->
+  <form class="updateForm" id="updateForm">
+    <input type="text" class="nameInput" id="nameInput" placeholder="Type name...">
+    <input type="text" class="emailInput" id="emailInput" placeholder="Type email...">
+    <input type="file" class="avatarPhoto" id="avatarPhoto" value="./photo.JPG">
+    <button type="submit" class="createBtn" id="createBtn">Craete New</button>
+    <button type="button" class="updateBtn" id="updateBtn">Update</button>
+  </form>
+  <!-- Open pop-up button -->
+  <button type="button" class="popUpBtn" id="popUpBtn"><i class="fas fa-plus-circle"></i></button>
+
+  <!-- axios -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.min.js"></script>
+</body>
+
+</html>
