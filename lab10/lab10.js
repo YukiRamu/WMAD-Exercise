@@ -81,10 +81,8 @@ const showUser = (url) => {
 /* Search by title */
 const searchIssue = async (keyword) => {
   const result = issueDataArray.filter((elem) => elem.title.toLowerCase().includes(keyword.toLowerCase()));
-  let labels = await getLabelData();
-  let labelObjArray = await createLabelObj(labels); //array of objects
   //display result
-  showData(result, labelObjArray);
+  showData(result, labelDataArray);
 };
 
 /* Create label color Object */
@@ -92,7 +90,8 @@ const createLabelObj = (labelArray) => {
   const obj = labelArray.map(elem => ({
     [elem.name]: elem.color
   }));
-  return obj;
+  labelDataArray = obj;
+  return labelDataArray;
 };
 
 /* Apply label color as a html attribute */
@@ -108,9 +107,9 @@ const applyLabelColor = (labelObjArray, labelName) => {
 /* ========== Function Execution =========== */
 window.addEventListener("DOMContentLoaded", async () => {
   let labels = await getLabelData();
-  let labelObjArray = await createLabelObj(labels); //array of objects
+  let labelDataArray = await createLabelObj(labels); //array of objects
   const data = await getIssueData();
-  showData(data, labelObjArray);
+  showData(data, labelDataArray);
 });
 
 searchBtn.addEventListener("click", (e) => {
@@ -121,8 +120,6 @@ searchBtn.addEventListener("click", (e) => {
 
 clearSearch.addEventListener("click", async (e) => {
   e.preventDefault();
-  let labels = await getLabelData();
-  let labelObjArray = await createLabelObj(labels); //array of objects
   const issueList = await getIssueData();
-  showData(issueList, labelObjArray);
+  showData(issueList, labelDataArray);
 });

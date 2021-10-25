@@ -1,0 +1,52 @@
+@import "../../component";
+
+/* Search Bar */
+nav {
+  text-align: center;
+  .searchForm {
+    width: 80%;
+    height: 30px;
+    display: flex;
+    margin: auto;
+    .searchInput {
+      width: 70%;
+      border: 0.1rem solid $gray;
+      box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
+      &:focus {
+        outline: none;
+        border: 0.1rem solid $mediumvioletred;
+      }
+    }
+    .searchBtn {
+      width: 30%;
+      color: $white;
+      border: none;
+      background: linear-gradient(-45deg, #ff7d31d3, #e62d03e8);
+      &:focus {
+        outline: none;
+        font-weight: bold;
+        font-size: larger;
+        border: $mediumvioletred solid 0.1rem;
+        background: linear-gradient(45deg, #fcd34d, #ef4444, #ec4899);
+        box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
+      }
+      &:hover {
+        border: $mediumvioletred solid 0.1rem;
+        font-weight: bold;
+        font-size: larger;
+        background: linear-gradient(45deg, #fcd34d, #ef4444, #ec4899);
+        box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
+      }
+    }
+  }
+  .clearSearch {
+    margin: 2rem 0 0 0;
+    border: none;
+    background: none;
+    &:hover {
+      color: $mediumvioletred;
+      border-bottom: 0.2rem solid $orange;
+      font-weight: bold;
+    }
+  }
+}
