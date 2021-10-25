@@ -15,7 +15,6 @@ const getIssueData = async () => {
       throw response.statusText;
     } else {
       const issueData = await response.data;
-      console.log(issueData); //array
       issueDataArray = issueData; //for search function
       return issueData;
     }
@@ -31,7 +30,7 @@ const getLabelData = async () => {
     //url to search repo ID for facebook/react --> 10270250
     //https://api.github.com/search/repositories?q=${apiParam.repo}&per_page=100&page=1
 
-  
+
     //https://api.github.com/repos/${apiParam.owner}/${apiParam.repo}/labels?q=per_page=100&page=1 \\30 results
 
     //https://api.github.com/search/labels?q=repository_id=10270250&per_page=100 //need to set label name
@@ -41,7 +40,6 @@ const getLabelData = async () => {
     } else {
       const labelData = await res.data;
       labelDataArray = labelData; //for color change
-      console.log(labelData);
       return labelData;
     }
   } catch (error) {
@@ -81,8 +79,10 @@ const showUser = (url) => {
 };
 
 /* Search by title */
-const searchIssue = (keyword) => {
+const searchIssue = async (keyword) => {
   const result = issueDataArray.filter((elem) => elem.title.toLowerCase().includes(keyword.toLowerCase()));
+  let labels = await getLabelData();
+  let labelObjArray = await createLabelObj(labels); //array of objects
   //display result
   showData(result, labelObjArray);
 };
@@ -107,8 +107,8 @@ const applyLabelColor = (labelObjArray, labelName) => {
 
 /* ========== Function Execution =========== */
 window.addEventListener("DOMContentLoaded", async () => {
-  const labels = await getLabelData();
-  const labelObjArray = await createLabelObj(labels); //array of objects
+  let labels = await getLabelData();
+  let labelObjArray = await createLabelObj(labels); //array of objects
   const data = await getIssueData();
   showData(data, labelObjArray);
 });
@@ -121,6 +121,8 @@ searchBtn.addEventListener("click", (e) => {
 
 clearSearch.addEventListener("click", async (e) => {
   e.preventDefault();
+  let labels = await getLabelData();
+  let labelObjArray = await createLabelObj(labels); //array of objects
   const issueList = await getIssueData();
   showData(issueList, labelObjArray);
 });
