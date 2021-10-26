@@ -96,6 +96,7 @@ const createLabelObj = (labelArray) => {
 
 /* Apply label color as a html attribute */
 const applyLabelColor = (labelObjArray, labelName) => {
+  console.log(labelObjArray)
   //check if labelObjArray has the key same as labelName
   for (let i = 0; i < labelObjArray.length; i++) {
     if (labelName in labelObjArray[i]) {
