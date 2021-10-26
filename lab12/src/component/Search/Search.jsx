@@ -6,18 +6,35 @@ class Search extends Component {
 
   static contextType = APIContext;
 
+  constructor(props) {
+    super(props);
+    this.state = {
+      searchInput: ""
+    };
+  }
+
   searchIssue(e) {
     e.preventDefault();
-    let keyword = e.target.form[0].value;
+    //validation check
+    if (this.state.searchInput === "") {
+      alert("Please enter the search keyword");
+      return false;
+    } else {
+      let keyword = this.state.searchInput;
+      const result = this.context.state.tempIssueDataArray.filter((elem) => elem.title.toLowerCase().includes(keyword.toLowerCase()));
 
-    const result = this.context.state.issueDataArray.filter((elem) => elem.title.toLowerCase().includes(keyword.toLowerCase()));
+      //update state in context api
+      this.context.setIssueData(result);
 
-    //update state in context api
-    this.context.setIssueData(result);
+      //clear input
+      this.setState({ ...this.state, searchInput: "" });
+    }
   }
 
   clearSearch(e) {
     e.preventDefault();
+    //get all issue data again
+    this.context.getIssueData();
   }
 
   render() {
@@ -32,10 +49,21 @@ class Search extends Component {
                 <>
                   <nav>
                     <form className="searchForm">
-                      <input type="text" className="searchInput" placeholder="Type issue keyword..." />
-                      <button type="submit" className="searchBtn" onClick={(e) => this.searchIssue(e)}>Search</button>
+                      <input
+                        type="text"
+                        className="searchInput"
+                        placeholder="Type issue keyword..."
+                        value={this.state.searchInput}
+                        onChange={e => this.setState({ ...this.state, searchInput: e.target.value })} />
+                      <button
+                        type="submit"
+                        className="searchBtn"
+                        onClick={e => this.searchIssue(e)}>Search</button>
                     </form>
-                    <button type="button" className="clearSearch" onClick={(e) => this.clearSearch(e)}>Clear Search</button>
+                    <button
+                      type="button"
+                      className="clearSearch"
+                      onClick={e => this.clearSearch(e)}>Clear Search</button>
                   </nav>
                 </>);
             }

@@ -38,7 +38,6 @@ class IssueList extends Component {
         <APIContext.Consumer>
           {(value) => {
             const data = value.state;
-
             if (data.issueDataArray.length !== 0 && data.labelDataArray.length !== 0) {
               return (
                 <>

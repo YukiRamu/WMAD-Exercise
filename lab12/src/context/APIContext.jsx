@@ -9,25 +9,27 @@ class APIProvider extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      issueDataArray: [],//use this as a temp storage for search feature
+      issueDataArray: [],//master
       labelDataArray: [], //store label data for color change
+      tempIssueDataArray: [], //for search function
       apiParam: {
         owner: "Facebook",
         repo: "react"
       }
     };
     this.setIssueData = this.setIssueData.bind(this);
+    this.getIssueData = this.getIssueData.bind(this);
   }
 
   /* methods */
   componentDidMount() {
     this.getIssueData();
     this.getLabelData();
+    this.tempIssueDataArray = this.issueDataArray;
   }
 
   //update issue data when searched
   setIssueData(issueData) {
-    console.log("context API", issueData);
     this.setState({ ...this.state, issueDataArray: issueData });
   };
 
@@ -39,7 +41,7 @@ class APIProvider extends Component {
         throw response.statusText;
       } else {
         const issueData = await response.data;
-        this.setState({ ...this.state, issueDataArray: issueData });
+        this.setState({ ...this.state, issueDataArray: issueData, tempIssueDataArray: issueData });
         return this.state.issueDataArray;
       }
     } catch (error) {
@@ -69,6 +71,7 @@ class APIProvider extends Component {
       <>
         <APIContext.Provider value={{
           state: this.state,
+          getIssueData: this.getIssueData,
           setIssueData: this.setIssueData
         }}>
           {this.props.children}
